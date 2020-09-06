@@ -1,0 +1,60 @@
+<div class="page-wrap height-100 mat-bg-primary">
+    <div class="session-form-hold">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="signupForm" novalidate (ngSubmit)="login()" autocomplete="off">
+                    <div class="inputdiv">
+                        <mat-form-field class="full-width">
+                            <input matInput required autocomplete="off" id="username" name="username" formControlName="username"
+                                [(ngModel)]="signupData.username" placeholder="username" />
+                            <span mat-icon-button matPrefix style="padding-right:10px;"><i class="fa fa-user" style="font-size:16px; color:#158ca3;"
+                                    aria-hidden="true"></i></span>
+                            <mat-icon matSuffix matTooltip="Email / User name">account_box</mat-icon>
+
+                            <mat-error *ngFor="let validation of validation_messages.username">
+                                <div class="form-error-msg" *ngIf="signupForm.get('username').hasError(validation.type) && signupForm.get('username').touched">
+                                    {{validation.message}}
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputdiv">
+                        <mat-form-field class="full-width">
+                            <input type="password" name="password" autocomplete="off" required matInput formControlName="password"
+                                [(ngModel)]="signupData.password" placeholder="password" [type]="!show ? 'password' : 'text'" />
+                            <span mat-icon-button matPrefix style="padding-right:10px;"><i class="fa fa-key" style="font-size:16px; color:#158ca3;"
+                                    aria-hidden="true"></i></span>
+                            <mat-icon matSuffix style="cursor:pointer" (click)="show = !show" matTooltip="Click here to reveal password">{{show
+                                ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            <mat-error *ngFor="let validation of validation_messages.password">
+                                <div class="form-error-msg" *ngIf="signupForm.get('password').hasError(validation.type) && signupForm.get('password').touched">
+                                    {{validation.message}}
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputdiv">
+                        <mat-form-field class="full-width">
+                            <input type="password" name="repassword" autocomplete="off" required matInput
+                                formControlName="repassword" [(ngModel)]="signupData.repassword" placeholder="re enter password"
+                                [type]="!show ? 'repassword' : 'text'" />
+                            <span mat-icon-button matPrefix style="padding-right:10px;"><i class="fa fa-key" style="font-size:16px; color:#158ca3;"
+                                    aria-hidden="true"></i></span>
+                            <mat-icon matSuffix style="cursor:pointer" (click)="show = !show" matTooltip="Click here to reveal password">{{show
+                                ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            <mat-error *ngFor="let validation of validation_messages.password">
+                                <div class="form-error-msg" *ngIf="signupForm.get('password').hasError(validation.type) && signupForm.get('password').touched">
+                                    {{validation.message}}
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button class="mat-primary full-width mb-1" style="margin-left:0 !important" type="submit">Sign
+                        up</button>
+
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>

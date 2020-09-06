@@ -1,0 +1,58 @@
+<p>dashboard works!</p>
+
+<div>
+    Category: <input type="text" n ame="category" placeholder="caterogryname" style="margin-right:4px;padding: 10px"
+        [(ngModel)]="categoryname" />
+    <button mat-raised-button class="mat-primary mb-1" type="submit" (click)="addCategory()">Add</button>
+
+</div>
+
+<div style="margin: 10px">
+    <mat-form-field appearance="fill" class="m-10">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let category of categories" [value]="category.id" (click)="onChange()">
+                {{category.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+
+</div>
+<!-- Adding content-->
+<div style="margin: 10px" *ngIf=showContent>
+    <p>Here comes content</p>
+
+    Add Content: <textarea type="textarea" name="content" placeholder="add content" style="margin-right:4px;padding: 10px"
+        [(ngModel)]="addContent"></textarea>
+
+
+    <button mat-raised-button class="mat-primary mb-1" type="submit" (click)="addContentMethod()">Add</button>
+
+
+    <div>
+        <input type="file" (change)="onFileChange($event)" />
+        <input type="submit" value="upload" (click)="upload()" />
+    </div>
+    <div *ngFor="let a of filteredArray">
+        <p>
+            {{a.name}}
+        </p>
+    </div>
+</div>
+
+<!-- searching content-->
+<div style="margin: 10px" *ngIf=showContent>
+    <p>Here comes content</p>
+
+    Search Content: <input type="text" name="content" placeholder="serach content" style="margin-right:4px;padding: 10px"
+        [(ngModel)]="searchApp" (keyup)="searchContent()" />
+    <button mat-raised-button class="mat-primary mb-1" type="submit" (click)="searchContent()">search</button>
+
+    <div *ngFor="let a of filteredArray">
+        <p>
+            {{a.name}}
+        </p>
+    </div>
+</div>
